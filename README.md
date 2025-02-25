@@ -35,6 +35,22 @@ The [Maven Ski Shop dataset](https://docs.google.com/spreadsheets/d/1WnLOQtJeGWX
 ```
 import pandas as pd
 ```
+- Next, I loaded the dataset and each sheet into a DataFrame
+```
+file_path = r"C:\Users\DELL\Downloads\maven_ski_shop_data"
+xls = pd.ExcelFile(file_path)
+
+item_info_df = pd.read_excel(xls,"Item_Info")
+inventory_levels_df = pd.read_excel(xls, "Inventory_Levels")
+orders_info_df = pd.read_excel(xls, "Orders_Info")
+```
+I also used the .head() function to return the first five rows to be sure it loaded 
+
+![image](https://github.com/user-attachments/assets/9fde1c71-55db-4ded-b134-9032fcd2ffca)
+
+## Step two: Cleaning and processing the data
+
+
 
 
 
