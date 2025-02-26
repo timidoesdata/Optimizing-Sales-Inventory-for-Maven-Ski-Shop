@@ -63,6 +63,5 @@ orders_info_df["Total"] = orders_info_df["Tax"] + orders_info_df["Subtotal"]
 ```
 orders_info_df["Items Ordered"] = orders_info_df["Items Ordered"].apply(lambda x:x.split(", ") if isinstance(x, str) else x)
 ```
-
-
+- Next, I fixed the data type of the "Order Date" column from string to datetime
 
