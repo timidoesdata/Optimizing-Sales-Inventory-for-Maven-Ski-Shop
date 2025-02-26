@@ -49,8 +49,20 @@ I also used the .head() function to return the first five rows to be sure it loa
 ![image](https://github.com/user-attachments/assets/9fde1c71-55db-4ded-b134-9032fcd2ffca)
 
 ## Step two: Cleaning and processing the data
-
-
+- In the item_info dataset, there is one missing value in the *Available Sizes* column, and I will be filling that in with "unknown."
+```
+item_info_df.fillna({"Available Sizes" : "Unknown"}, inplace= True)
+```
+- For the *Inventory Levels* sheet there are no blanks or inconsistencies, so I moved to the *Orders Info* sheet with blank "Tax" and "Total" columns.<br>
+"Tax" is 8% of the "Sub-total", and "Total" is the addition of "Tax" and "Sub-total," therefore;
+```
+orders_info_df["Tax"] = orders_info_df["Subtotal"] * 0.08
+orders_info_df["Total"] = orders_info_df["Tax"] + orders_info_df["Subtotal"]
+```
+- I also converted the "Items Ordered" column from comma separated values to a list for easier analysis
+```
+orders_info_df["Items Ordered"] = orders_info_df["Items Ordered"].apply(lambda x:x.split(", ") if isinstance(x, str) else x)
+```
 
 
 
