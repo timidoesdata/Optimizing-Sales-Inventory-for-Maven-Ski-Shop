@@ -64,4 +64,15 @@ orders_info_df["Total"] = orders_info_df["Tax"] + orders_info_df["Subtotal"]
 orders_info_df["Items Ordered"] = orders_info_df["Items Ordered"].apply(lambda x:x.split(", ") if isinstance(x, str) else x)
 ```
 - Next, I fixed the data type of the "Order Date" column from string to datetime
+```
+orders_info_df["Order_Date"] = pd.to_datetime(orders_info_df["Order_Date"])
+```
+- Lastly, I handled duplicate values across all sheets using the .drop_duplicates() function
+```
+item_info_df.drop_duplicates(inplace= True)
+inventory_levels_df.drop_duplicates(inplace= True)
+orders_info_df.drop_duplicates(inplace= True)
+```
+
+## Step three: 
 
