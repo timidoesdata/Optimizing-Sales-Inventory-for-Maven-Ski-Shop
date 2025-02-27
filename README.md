@@ -88,5 +88,29 @@ item_info_df["Profit Margin"] = (item_info_df["Price"] - item_info_df["Cost"]) /
 ```
 
 - Total Revenue
+For this I would actually have to create a new table because while each item is listed in the *Items Info* sheet, they were recurring in the *Orders Info* sheet based on quantity ordered. I need to generate number of times each item was bought first.
+```
+orders_info_df["Items_Ordered"] = orders_info_df["Items_Ordered"].apply(lambda x: eval(x) if isintance (x, str) else x)
+
+# hold the new dataframe
+orders_exploded = orders_info_df.explode("Items_Ordered")
+
+# merge with my items_info sheet
+orders_merged = orders_exploded.merge(item_info_df[["Product ID", "Price"]], how= "left", left_on= "Items_Ordered", right_on= "Product ID")
+
+# get revenue per order which is price
+orders_merged["Revenue"] = item_info_df["Price"]
+
+# group all sales by product ID to get revenue for each
+revenue_per_product = orders_merged.groupby("Product ID")["Revenue"].sum().reset_index()
+
+# save files
+item_info_df.to_csv("cleaned_item_info.csv", index=False)
+inventory_levels_df.to_csv("cleaned_inventory_levels.csv", index=False)
+orders_info_df.to_csv("cleaned_orders_info.csv", index=False)
+revenue_per_product.to_csv("revenue_per_product.csv", index=False)
+```
+
+## Step four: Create visuals 
 
 
