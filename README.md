@@ -64,23 +64,36 @@ orders_info_df["Total"] = orders_info_df["Tax"] + orders_info_df["Subtotal"]
 
 - I also converted the "Items Ordered" column from comma separated values to a list for easier analysis
 ```
-orders_info_df["Items Ordered"] = orders_info_df["Items Ordered"].apply(lambda x:x.split(", ") if isinstance(x, str) else x)
+import ast
+orders_info_df["Items_Ordered"] = orders_info_df["Items_Ordered"].apply(lambda x: ast.literal_eval(x) if isinstance(x, str) else x)
+orders_exploded = orders_info_df.explode("Items_Ordered")
+```
+
+- I added product price & quanitity information from my item_info & inventory_levels dataframe
+```
+orders_merged = orders_exploded.merge(item_info_df[["Product_ID", "Price"]], 
+                                      how="left", left_on="Items_Ordered", right_on="Product_ID")
+orders_merged = orders_merged.merge(inventory_levels_df[["Product_ID", "Quantity_in_stock"]], 
+                                    how="left", on="Product_ID")
 ```
 
 - Next, I fixed the data type of the "Order Date" column from string to datetime
 ```
 orders_info_df["Order_Date"] = pd.to_datetime(orders_info_df["Order_Date"])
 ```
+
 - Lastly, I handled duplicate values across all sheets using the .drop_duplicates() function. 
 ```
 item_info_df.drop_duplicates(inplace= True)
 inventory_levels_df.drop_duplicates(inplace= True)
 orders_info_df.drop_duplicates(inplace= True)
 ```
-![image](https://github.com/user-attachments/assets/d3755434-000c-40df-8782-e363a2bb0e70)
+
+![image](https://github.com/user-attachments/assets/611275b3-2868-4129-a24f-b7ddad8ed733)
 
 ## Step three: 
 To analyze this data in alignment with the end goal, I have to create some new calculated columns using the present inputs. 
+
 - Profit margin
 Profit is *Price - Cost*, but Profit Margin is *[Profit/Price] * 100*.
 ```
@@ -90,19 +103,20 @@ item_info_df["Profit Margin"] = (item_info_df["Price"] - item_info_df["Cost"]) /
 - Total Revenue
 For this I would actually have to create a new table because while each item is listed in the *Items Info* sheet, they were recurring in the *Orders Info* sheet based on quantity ordered. I need to generate number of times each item was bought first.
 ```
-orders_info_df["Items_Ordered"] = orders_info_df["Items_Ordered"].apply(lambda x: eval(x) if isintance (x, str) else x)
-
-# hold the new dataframe
+# get total revenue for each item
 orders_exploded = orders_info_df.explode("Items_Ordered")
 
-# merge with my items_info sheet
-orders_merged = orders_exploded.merge(item_info_df[["Product ID", "Price"]], how= "left", left_on= "Items_Ordered", right_on= "Product ID")
+orders_merged = orders_exploded.merge(
+    item_info_df[["Product_ID", "Price"]], 
+    how="left", 
+    left_on="Items_Ordered", 
+    right_on="Product_ID"
+)
 
-# get revenue per order which is price
-orders_merged["Revenue"] = item_info_df["Price"]
+orders_merged['Revenue'] = orders_merged['Price'] * orders_merged['Quantity_in_stock']
 
-# group all sales by product ID to get revenue for each
-revenue_per_product = orders_merged.groupby("Product ID")["Revenue"].sum().reset_index()
+# group by product
+revenue_per_product = orders_merged.groupby('Product_ID')['Revenue'].sum().reset_index()
 
 # save files
 item_info_df.to_csv("cleaned_item_info.csv", index=False)
@@ -112,5 +126,7 @@ revenue_per_product.to_csv("revenue_per_product.csv", index=False)
 ```
 
 ## Step four: Create visuals 
+To do this, I uploaded each sheet into my *Maven Ski Cleaned* workbook in Google Sheets, and connected to Looker Studio as my data source.
+
 
 
