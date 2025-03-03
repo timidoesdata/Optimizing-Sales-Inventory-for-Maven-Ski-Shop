@@ -117,7 +117,10 @@ orders_merged['Revenue'] = orders_merged['Price'] * orders_merged['Quantity_in_s
 
 # group by product
 revenue_per_product = orders_merged.groupby('Product_ID')['Revenue'].sum().reset_index()
+```
 
+- Next, I saved the [clean/processed dataset](https://docs.google.com/spreadsheets/d/1aspjwfmWJpJyiq7xsNEfvLGfS8a8aSFZ2TS8HnM1VTc/edit?usp=sharing)for analysis
+```
 # save files
 item_info_df.to_csv("cleaned_item_info.csv", index=False)
 inventory_levels_df.to_csv("cleaned_inventory_levels.csv", index=False)
@@ -125,8 +128,10 @@ orders_info_df.to_csv("cleaned_orders_info.csv", index=False)
 revenue_per_product.to_csv("revenue_per_product.csv", index=False)
 ```
 
+
+
 ## Step four: Create visuals 
 To do this, I uploaded each sheet into my *Maven Ski Cleaned* workbook in Google Sheets, and connected to Looker Studio as my data source.
 
-
+- 
 
