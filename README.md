@@ -149,6 +149,8 @@ To do this, I uploaded each sheet into my *Maven Ski Cleaned* workbook in Google
 
 VIEW REPORT [HERE](https://lookerstudio.google.com/reporting/2160c158-c4b4-4f8b-a120-1f815921cf85)
 
+![image](https://github.com/user-attachments/assets/f726e7dd-6a13-412d-b788-ab7bc801b800)
+
 ## Insights & Actionable Steps
 
 **- Revenue & Sales**
