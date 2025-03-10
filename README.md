@@ -117,6 +117,13 @@ orders_merged['Revenue'] = orders_merged['Price'] * orders_merged['Quantity_in_s
 
 # group by product
 revenue_per_product = orders_merged.groupby('Product_ID')['Revenue'].sum().reset_index()
+
+# orders per product
+num_orders_per_product = orders_exploded.groupby("Items_Ordered", as_index=False)["Order_ID"].nunique()
+num_orders_per_product.rename(columns={"Items_Ordered": "Product_ID", "Order_ID": "Order_Count"}, inplace=True)
+
+# Merge orders_per_product with revenue_per_product 
+revenue_per_product = revenue_per_product.merge(num_orders_per_product, on="Product_ID", how="left")
 ```
 
 - Next, I saved the [clean/processed dataset](https://docs.google.com/spreadsheets/d/1aspjwfmWJpJyiq7xsNEfvLGfS8a8aSFZ2TS8HnM1VTc/edit?usp=sharing)for analysis
@@ -129,9 +136,22 @@ revenue_per_product.to_csv("revenue_per_product.csv", index=False)
 ```
 
 
-
-## Step four: Create visuals 
+## Step four: CreatING visuals 
 To do this, I uploaded each sheet into my *Maven Ski Cleaned* workbook in Google Sheets, and connected to Looker Studio as my data source.
 
-- 
+- Total Revenue
+- Total Orders
+- Sales trend over time
+- Products by sales
+- Orders by location
+- Inventory vs. Sales
+- Sorting by Location & Day (slicers)
+
+VIEW REPORT [HERE](https://lookerstudio.google.com/reporting/2160c158-c4b4-4f8b-a120-1f815921cf85)
+
+## INSIGHTS & ACTIONABLE STEPS
+
+**- Revenue & Sales**
+Revenue peaked on day 1, and drastically declined by about 70% across the last two days. The product bringing in the most revenue across these days was the *Ski* costing $599.9 per one.
+
 
