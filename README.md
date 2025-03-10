@@ -126,7 +126,7 @@ num_orders_per_product.rename(columns={"Items_Ordered": "Product_ID", "Order_ID"
 revenue_per_product = revenue_per_product.merge(num_orders_per_product, on="Product_ID", how="left")
 ```
 
-- Next, I saved the [clean/processed dataset](https://docs.google.com/spreadsheets/d/1aspjwfmWJpJyiq7xsNEfvLGfS8a8aSFZ2TS8HnM1VTc/edit?usp=sharing)for analysis
+- Next, I saved the [clean/processed dataset](https://docs.google.com/spreadsheets/d/1aspjwfmWJpJyiq7xsNEfvLGfS8a8aSFZ2TS8HnM1VTc/edit?usp=sharing) for analysis
 ```
 # save files
 item_info_df.to_csv("cleaned_item_info.csv", index=False)
@@ -136,7 +136,7 @@ revenue_per_product.to_csv("revenue_per_product.csv", index=False)
 ```
 
 
-## Step four: CreatING visuals 
+## Step four: Creating visuals 
 To do this, I uploaded each sheet into my *Maven Ski Cleaned* workbook in Google Sheets, and connected to Looker Studio as my data source.
 
 - Total Revenue
