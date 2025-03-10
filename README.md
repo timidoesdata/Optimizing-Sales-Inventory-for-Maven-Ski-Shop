@@ -4,21 +4,17 @@ This project analyzes sales trends, inventory management, and product performanc
 ## Key insights:
 
 **Sales peformance:**
-- Total revenue & average order value
+- Total revenue & order value
 - Best & worst selling products
-- Seasonal sales trend
+- Sales trend
 
 **Customer behaviour:**
 - Geograhic distribution
-- Buyer frequency and order patterns
+- Order frequency and order patterns
 
 **Inventory management:**
 - Stock levels vs. Demand
 - Potential overstocking
-
-**Pricing strategy:**
-- Profit margins per product
-- Price competitiveness across currencies
 
 ## Tools used:
 I used **Python** to process & analyze the data, and **Google Looker Studio** for visualization. 
