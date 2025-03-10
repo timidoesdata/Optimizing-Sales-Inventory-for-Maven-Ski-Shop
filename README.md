@@ -149,9 +149,33 @@ To do this, I uploaded each sheet into my *Maven Ski Cleaned* workbook in Google
 
 VIEW REPORT [HERE](https://lookerstudio.google.com/reporting/2160c158-c4b4-4f8b-a120-1f815921cf85)
 
-## INSIGHTS & ACTIONABLE STEPS
+## Insights & Actionable Steps
 
 **- Revenue & Sales**
-Revenue peaked on day 1, and drastically declined by about 70% across the last two days. The product bringing in the most revenue across these days was the *Ski* costing $599.9 per one.
+- Revenue peaked on day 1, and drastically declined by about 70% across the last two days. The product bringing in the most revenue across these days was the *Ski* costing $599.9 per item.
+- Mammoth city brought in the most revenue, followed by Stowe and then Sun Valley
+
+**- Inventory vs. Orders**
+- *Item 10001*, which is the *Coffee* must have been overstocked as only 4 out of 100 were sold, *Item 10010*, which is the *Skis* were sold out (5 pieces).
+- The demand for items *10009, 10007, 10008, 10011, 10013* could not be met as they were either understocked or not available
+
+**- Revenue & Order Count**
+- Maven Ski got a total of 27 orders, and made a total of $8,710+ between November 26-28, 2021
+- The most orders came in on day one and dropped by about 50% on the last two days.
+
+## Conclusion
+
+The declining sales trend and regional revenue disparities indicate a need for improved marketing efforts or promotions in underperforming areas. Additionally, the stockout of high-demand items and overstocking of low-demand products suggest that refining inventory forecasting could significantly improve sales and reduce holding costs.
+
+Moving forward, Maven Ski Shop can take action using these insights to:
+- Adjust stock levels based on historical demand.
+- Implement dynamic pricing to maximize revenue.
+- Launch targeted marketing campaigns to boost sales.
+---
+Let me know what you think! Please connect with on [LinkedIn](linkedin.com/in/hellotimilehin/) or via [E-mail](hellotimilehin@gmail.com)
+
+
+
+
 
 
